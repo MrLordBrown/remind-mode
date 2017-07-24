@@ -1,10 +1,10 @@
 # remind-mode
 EMACS Major-Mode for Editing Remind Files.
 ## Commentary   
-   This is essentially a port of the Vim Syntax File distributed with the 
+   This is essentially a port of the _Vim Syntax File_ distributed with the 
    Remind software as authored by Davide Alberani (18 September 2009).
-   I also leaned heavily on the guidance provided by Xah Lee in the How to
-   Write a[n] Emacs Major Mode tutorials found at 
+   I also leaned heavily on the guidance provided by Xah Lee in the _How to
+   Write a[n] Emacs Major Mode_ tutorials found at 
    http://ergoemacs.org/emacs/elisp_syntax_coloring.html (25 Oct 2016). Both of
    their efforts are greatly appreciated.
  ## Usage
