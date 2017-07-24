@@ -10,10 +10,10 @@ EMACS Major-Mode for Editing Remind Files.
  ## Usage
    Currently, this major-mode includes syntax highlighting for most commands and features.
    To use, download into a location on your PATH (such as ~/.emacs.d/elpa or/usr/local/bin).
-   If you are not what sure is on your PATH, then type "echo $PATH" at the terminal and pick
+   If you are not what sure is on your PATH, then type `echo $PATH` at the terminal and pick
    one of the listed locations. You can also add a file to the PATH by typing 
-   "export PATH=$PATH:/path/to/file/" where /path/to/file is the absolute file path of your
-   choosing. Also, add "(add-to-list 'load-path "/path/to/file/)" and "(require 'remind-mode)"
+   `export PATH=$PATH:/path/to/file/` where `/path/to/file` is the absolute file path of your
+   choosing. Also, add `(add-to-list 'load-path "/path/to/file/)` and `(require 'remind-mode)`
    to your .emacs file or other intitialization document.
    
    Please email me at mrlordvondoombraun@gmail.com with comments questions or raise an issue
