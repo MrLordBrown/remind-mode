@@ -3,7 +3,7 @@
 
 ;; Author: Christopher R. Brown ( mrlordvondoombraun@gmail.com )
 ;; Version: 0.0.2
-;; Created: 2 AUG 2017
+;; Created: 16 AUG 2017
 ;; Keywords: major-mode, remind, reminder, calendar, cli, command-line 
 ;; Homepage: teamawesome3.dlinkddns.com
 
@@ -41,55 +41,102 @@
 ;;   "export PATH=$PATH:/path/to/file/" where /path/to/file is the absolute file path of your
 ;;   choosing. Also, add "(add-to-list 'load-path "/path/to/file/)" and "(require 'remind-mode)"
 ;;   to your .emacs file or other intitialization document.
-   
+
+;;   Please note that reind-mode only supports syntax highlighting for three letter, capitalized
+;;   abbreviations of months and days.
+
 ;;   Please email me at mrlordvondoombraun@gmail.com with comments questions or raise an issue
 ;;   github.
    
 ;; TODO
-;;   - Comment Highlighting
-;;   - Date and Other Non-Keyword Highlighting
-;;   - Automagic Indenting
-;;   - Export as org file
+;;   - Numerical Date and Other Non-Keyword Highlighting
+;;   - Support Highlighting for Scripts
+;;   - Export/Import as org file
+;;   - Include Highlighting for Use of Non-Abbreviated Month and Day
+;;   - Differentiate Use of Keywords in MSG so They do Not Highlight.
 
 ;;; Code:
 
 ;; Use generic-mode as a basis
 (require 'generic-x)
+(require 'highlight-numbers)
+
+(highlight-numbers-mode t)
 
 (define-generic-mode
     'remind-mode
   '("#")
-  '("REM" "UNTIL" "MSG" "WARN" "ONCE")
+  '("REM" "OMIT" "SET" "FSET" "UNSET")
   '(
-    ("MON" . 'font-lock-string-face)
+    ("SATISFY" . 'font-lock-type-face)
+    ("[m|M][o|O][n|N]" . 'font-lock-string-face)
     ("TUE" . 'font-lock-string-face)
     ("WED" . 'font-lock-string-face)
     ("THU" . 'font-lock-string-face)
     ("FRI" . 'font-lock-string-face)
     ("SAT" . 'font-lock-string-face)
     ("SUN" . 'font-lock-string-face)
-    ("OMIT" . font-lock-keyword-face)
-    ("SET" . font-lock-keyword-face)
-    ("FSET" . font-lock-keyword-face)
-    ("UNSET" . font-lock-keyword-face)
-    ("PRIORITY" . font-lock-type-face)
-    ("TAG" . font-lock-type-face)
-    ("AT" . font-lock-doc-face)
-    ("DURATION" . font-lock-doc-face)
-    ("--" . font-lock-doc-face)
-    ("*" . font-lock-doc-face)
-    ("+" . font-lock-doc-face)
-    ("-" . font-lock-doc-face)
-    ("SKIP" . font-lock-function-name-face)
-    ("BEFORE" . font-lock-function-name-face)
-    ("AFTER" . font-lock-function-name-face)
-    ("[^ b]" . font-lock-warn-face)
+    ("AUG" . 'font-lock-string-face)
+    ("JAN" . 'font-lock-string-face)
+    ("FEB" . 'font-lock-string-face)
+    ("MAR" . 'font-lock-string-face)
+    ("APR" . 'font-lock-string-face)
+    ("MAY" . 'font-lock-string-face)
+    ("JUN" . 'font-lock-string-face)
+    ("JUL" . 'font-lock-string-face)
+    ("SEP" . 'font-lock-string-face)
+    ("OCT" . 'font-lock-string-face)
+    ("NOV" . 'font-lock-string-face)
+    ("DEC" . 'font-lock-string-face)
+    ("UNTIL" . 'font-lock-keyword-face)
+    ("FROM" . 'font-lock-keyword-face)
+    ("SCANFROM" . 'font-lock-keyword-face)
+    ("SCAN" . 'font-lock-keyword-face)
+    ("WARN" . 'font-lock-warning-face)
+    ("SCHED" . 'font-lock-keyword-face)
+    ("THROUGH" . 'font-lock-function-name-face)
+    ("SET" . 'font-lock-keyword-face)
+    ("FSET" . 'font-lock-keyword-face)
+    ("UNSET" . 'font-lock-keyword-face)
+    ("PRIORITY" . 'font-lock-type-face)
+    ("TAG" . 'font-lock-type-face)
+    ("AT" . 'font-lock-doc-face)
+    ("DURATION" . 'font-lock-doc-face)
+    ("--" . 'font-lock-doc-face)
+    ("*" . 'font-lock-doc-face)
+    ("+" . 'font-lock-doc-face)
+    ("-" . 'font-lock-doc-face)
+    ("SKIP" . 'font-lock-function-name-face)
+    ("BEFORE" . 'font-lock-function-name-face)
+    ("AFTER" . 'font-lock-function-name-face)
+    ("%b[.|\\n| ]" . 'font-lock-warning-face)
+    ("ONCE" . 'font-lock-variable-name-face)
+    ("INCLUDE" . 'font-lock-variable-name-face)
+    ("INC" . 'font-lock-variable-name-face)
+    ("BANNER" . 'font-lock-variable-name-face)
+    ("PUSH" . 'font-lock-variable-string-face)
+    ("CONTEXT" . 'font-lock-keyword-face)
+    ("CLEAR" . 'font-lock-warning-face)
+    ("POP" . 'font-lock-doc-face)
+    ("COLOR" . 'font-lock-function-name-face)
+    ("COLOUR" . 'font-lock-function-name-face)
+    ("MSG" . 'font-lock-keyword-face)
+    ("MSF" . 'font-lock-variable-name-face)
+    ("RUN" . 'font-lock-warning-face)
+    ("CAL" . 'font-lock-type-face)
+    ("SPECIAL" . 'font-lock-variable-name-face)
+    ("PS" . 'font-lock-function-name-face)
+    ("PSFILE" . 'font-lock-function-name-face)
+    ("SHADE" . 'font-lock-variable-name-face)
+    ("MOON" . 'font-lock-doc-face)
+    ("IF" . 'font-lock-variable-name-face)
+    ("ELSE" . 'font-lock-variable-name-face)
+    ("ENDIF" . 'font-lock-variable-name-face)
+    ("IFTRIG" . 'font-lock-variable-name-face)
+    ("#.*$" . 'font-lock-warning-face)
+    ("[0-9]" . 'font-lock-warning-face)
     )
   '("\\.rem$")
   nil
-  "A mode for editing REmind files"
+  "A mode for editing Remind files"
   )
-  
-(require 'remind-mode)
-
-;;; remind-mode ends here.
