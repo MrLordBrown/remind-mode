@@ -39,10 +39,10 @@
 ;;   If you are not what sure is on your PATH, then type "echo $PATH" at the terminal and pick
 ;;   one of the listed locations. You can also add a file to the PATH by typing 
 ;;   "export PATH=$PATH:/path/to/file/" where /path/to/file is the absolute file path of your
-;;   choosing. Also, add "(add-to-list 'load-path "/path/to/file/)" and "(require 'remind-mode)"
+;;   choosing. Also, add "(add-to-list 'load-path '/path/to/file/)'" and "(require 'remind-mode)"
 ;;   to your .emacs file or other intitialization document.
 
-;;   Please note that reind-mode only supports syntax highlighting for three letter, capitalized
+;;   Please note that remind-mode only supports syntax highlighting for three letter, capitalized
 ;;   abbreviations of months and days.
 
 ;;   Please email me at mrlordvondoombraun@gmail.com with comments questions or raise an issue
@@ -70,24 +70,24 @@
   '(
     ("SATISFY" . 'font-lock-type-face)
     ("[m|M][o|O][n|N]" . 'font-lock-string-face)
-    ("TUE" . 'font-lock-string-face)
-    ("WED" . 'font-lock-string-face)
-    ("THU" . 'font-lock-string-face)
-    ("FRI" . 'font-lock-string-face)
-    ("SAT" . 'font-lock-string-face)
-    ("SUN" . 'font-lock-string-face)
-    ("AUG" . 'font-lock-string-face)
-    ("JAN" . 'font-lock-string-face)
-    ("FEB" . 'font-lock-string-face)
-    ("MAR" . 'font-lock-string-face)
-    ("APR" . 'font-lock-string-face)
-    ("MAY" . 'font-lock-string-face)
-    ("JUN" . 'font-lock-string-face)
-    ("JUL" . 'font-lock-string-face)
-    ("SEP" . 'font-lock-string-face)
-    ("OCT" . 'font-lock-string-face)
-    ("NOV" . 'font-lock-string-face)
-    ("DEC" . 'font-lock-string-face)
+    ("[t|T][u|U][e|E]" . 'font-lock-string-face)
+    ("[w|W][e|E][d|D]" . 'font-lock-string-face)
+    ("[t|T][h|H][u|U]" . 'font-lock-string-face)
+    ("[f|F][r|R][i|I]" . 'font-lock-string-face)
+    ("[s|S][a|A][t|T]" . 'font-lock-string-face)
+    ("[s|S][u|U][n|N]" . 'font-lock-string-face)
+    ("[a|A][u|U][g|G]" . 'font-lock-string-face)
+    ("[j|J][a|A][n|N]" . 'font-lock-string-face)
+    ("[f|F][e|E][b|B]" . 'font-lock-string-face)
+    ("[m|M][a|A][r|R]" . 'font-lock-string-face)
+    ("[a|A][p|P][r|R]" . 'font-lock-string-face)
+    ("[m|M][a|A][y|Y]" . 'font-lock-string-face)
+    ("[j|J][u|U][n|N]" . 'font-lock-string-face)
+    ("[j|J][u|U][l|L]" . 'font-lock-string-face)
+    ("[s|S][e|E][p|P]" . 'font-lock-string-face)
+    ("[o|O][c|C][t|T]" . 'font-lock-string-face)
+    ("[n|N][o|O][v|V]" . 'font-lock-string-face)
+    ("[d|D][e|E][c|C]" . 'font-lock-string-face)
     ("UNTIL" . 'font-lock-keyword-face)
     ("FROM" . 'font-lock-keyword-face)
     ("SCANFROM" . 'font-lock-keyword-face)
@@ -140,3 +140,5 @@
   nil
   "A mode for editing Remind files"
   )
+
+(provide 'remind-mode)
