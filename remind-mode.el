@@ -134,11 +134,25 @@
     ("ENDIF" . 'font-lock-variable-name-face)
     ("IFTRIG" . 'font-lock-variable-name-face)
     ("#.*$" . 'font-lock-warning-face)
-    ("[0-9]" . 'font-lock-warning-face)
+w    ("[0-9]" . 'font-lock-warning-face)
     )
   '("\\.rem$")
   nil
   "A mode for editing Remind files"
   )
+
+(defun remind-mode-run-remind ()
+  "Run current remind file through remind script"
+  (interactive)
+  (shell-command (concat "remind "
+			 (shell-quote-argument buffer-file-name)
+			 )))
+
+(defun remind-mode-run-calendar ()
+  "Run current remind file in calendar mode"
+  (interactive)
+  (shell-command (concat "remind -c "
+			 (shell-quote-argument buffer-file-name)
+			 )))
 
 (provide 'remind-mode)
