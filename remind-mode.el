@@ -2,8 +2,8 @@
 ;; Copyright Â© 2017, by Christopher R. Brown
 
 ;; Author: Christopher R. Brown ( mrlordvondoombraun@gmail.com )
-;; Version: 0.0.2
-;; Created: 16 AUG 2017
+;; Version: 0.0.4
+;; Created: 19 SEP 2017
 ;; Keywords: major-mode, remind, reminder, calendar, cli, command-line 
 ;; Homepage: teamawesome3.dlinkddns.com
 
@@ -49,10 +49,8 @@
 ;;   github.
    
 ;; TODO
-;;   - Numerical Date and Other Non-Keyword Highlighting
 ;;   - Support Highlighting for Scripts
 ;;   - Export/Import as org file
-;;   - Include Highlighting for Use of Non-Abbreviated Month and Day
 ;;   - Differentiate Use of Keywords in MSG so They do Not Highlight.
 
 ;;; Code:
@@ -88,6 +86,13 @@
     ("[o|O][c|C][t|T]" . 'font-lock-string-face)
     ("[n|N][o|O][v|V]" . 'font-lock-string-face)
     ("[d|D][e|E][c|C]" . 'font-lock-string-face)
+    ("Monday" . 'font-lock-string-face)
+    ("Tuesday" . 'font-lock-string-face)
+    ("Wednesday" . 'font-lock-string-face)
+    ("Thursday" . 'font-lock-string-face)
+    ("Friday" . 'font-lock-string-face)
+    ("Saturday" . 'font-lock-string-face)
+    ("Sunday" . 'font-lock-string-face)
     ("UNTIL" . 'font-lock-keyword-face)
     ("FROM" . 'font-lock-keyword-face)
     ("SCANFROM" . 'font-lock-keyword-face)
@@ -134,7 +139,7 @@
     ("ENDIF" . 'font-lock-variable-name-face)
     ("IFTRIG" . 'font-lock-variable-name-face)
     ("#.*$" . 'font-lock-warning-face)
-w    ("[0-9]" . 'font-lock-warning-face)
+    ("[0-9]" . 'font-lock-warning-face)
     )
   '("\\.rem$")
   nil
@@ -155,4 +160,19 @@ w    ("[0-9]" . 'font-lock-warning-face)
 			 (shell-quote-argument buffer-file-name)
 			 )))
 
+(defun remind-mode-config ()
+  "Keybinds for common shell functions."
+  (local-set-key (kbd "C-c C-r") 'remind-mode-run-remind)
+  (local-set-key (kbd "C-c C-c") 'remind-mode-run-calendar)
+  )
+
+(easy-menu-define remind-menu global-map
+  "Menu for remind funtions and goodies."
+  '("Remind"
+    ["Remind Command" remind-mode-run-remind]
+    ["Calendar" remind-mode-run-calendar]))
+
+;;;###autoload
+
 (provide 'remind-mode)
+;;; remind-mode.el ends here
